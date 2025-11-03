@@ -32,9 +32,9 @@ public class LivroService {
             var livroRepository = new LivroRepository();
 
             livroRepository.InserirLivro(livros);
-
+            System.out.println("| Livro cadastrado com sucesso!");
         }catch (Exception e){
-
+            System.out.println("| Erro ao cadastrar livro!");
         }
     }
 

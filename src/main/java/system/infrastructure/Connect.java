@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Connect {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/Biblioteca_db?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/biblioteca_db?useSSL=false&serverTimezone=UTC";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "mysqlPW";
 
