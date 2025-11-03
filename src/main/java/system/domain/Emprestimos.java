@@ -1,0 +1,67 @@
+package system.domain;
+
+import java.time.LocalDate;
+
+public class Emprestimos {
+
+    private int idEmprestimo;
+    private int idLivro;
+    private int idUsuario;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucao;
+
+    public Emprestimos(int idEmprestimo, int idLivro, int idUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+        this.idEmprestimo = idEmprestimo;
+        this.idLivro = idLivro;
+        this.idUsuario = idUsuario;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public Emprestimos(int idLivro, int idUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+        this.idLivro = idLivro;
+        this.idUsuario = idUsuario;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public int getIdEmprestimo() {
+        return idEmprestimo;
+    }
+
+    public void setIdEmprestimo(int idEmprestimo) {
+        this.idEmprestimo = idEmprestimo;
+    }
+
+    public int getIdLivro() {
+        return idLivro;
+    }
+
+    public void setIdLivro(int idLivro) {
+        this.idLivro = idLivro;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public LocalDate getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
+    }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+}
