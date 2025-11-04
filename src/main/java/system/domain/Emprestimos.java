@@ -25,6 +25,10 @@ public class Emprestimos {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public Emprestimos(int idLivro) {
+        this.idLivro = idLivro;
+    }
+
     public int getIdEmprestimo() {
         return idEmprestimo;
     }

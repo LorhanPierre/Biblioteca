@@ -1,5 +1,6 @@
 package system.view;
 
+import system.service.EmprestimoService;
 import system.service.LivroService;
 
 import java.util.InputMismatchException;
@@ -47,7 +48,10 @@ public class BibliotecaView {
                 livro.CadastrarLivro();
             }
             case 2 ->{}
-            case 3 ->{}
+            case 3 ->{
+                var emprestimo = new EmprestimoService();
+                emprestimo.RegistrarEmprestimo();
+            }
             case 4 ->{}
             case 0 ->{
                 System.out.println("\nObrigado por usar o Bibliotech!");
