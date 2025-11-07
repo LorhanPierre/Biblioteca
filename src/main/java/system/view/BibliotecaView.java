@@ -3,6 +3,7 @@ package system.view;
 import system.service.EmprestimoService;
 import system.service.LivroService;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,13 +20,14 @@ public class BibliotecaView {
                 2 - Consultar Livros
                 3 - Registrar Empréstimo de Livro
                 4 - Registrar Devolução de Livro
+                5 - Consultar Emprestimos
                 
                 0 - sair
                 --------------------------------------
                 """);
     }
 
-    public int capturarOpcao(){
+    public int capturarOpcao() throws SQLException {
         System.out.print("| Escolha uma opção: ");
 
         int opcao = 0 ;
@@ -47,12 +49,19 @@ public class BibliotecaView {
                 var livro = new LivroService();
                 livro.CadastrarLivro();
             }
-            case 2 ->{}
+            case 2 ->{
+                var livro = new LivroService();
+                livro.ConsultarLivrosCadastrados();
+            }
             case 3 ->{
                 var emprestimo = new EmprestimoService();
                 emprestimo.RegistrarEmprestimo();
             }
-            case 4 ->{}
+            case 4 ->{
+                var emprestimo = new EmprestimoService();
+                emprestimo.RegistarDevolucao();
+            }
+            case 5 ->{}
             case 0 ->{
                 System.out.println("\nObrigado por usar o Bibliotech!");
             }

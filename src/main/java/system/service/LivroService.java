@@ -3,6 +3,8 @@ package system.service;
 import system.domain.Livros;
 import system.infrastructure.repository.LivroRepository;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class LivroService {
@@ -38,8 +40,30 @@ public class LivroService {
         }
     }
 
-    public void ConsultarLivrosCadastrados(){
+    public void ConsultarLivrosCadastrados() throws SQLException {
 
+        var livrosRepository = new LivroRepository();
+
+        List<Livros> livrosCadastrados = livrosRepository.buscarLivros();
+
+        System.out.print("""
+                --------------------------------------
+                          Consulta de Livros
+                --------------------------------------
+                """);
+
+        for (Livros livro : livrosCadastrados) {
+            System.out.println("| id: " + livro.getIdLivro());
+            System.out.println("| Titulo do Livro: " + livro.getTitulo());
+            System.out.println("| Autor do Livro: " + livro.getAutor());
+            System.out.println("| ano do Livro: " + livro.getAno());
+            if(livro.isDisponivel()){
+                System.out.println("| Disponibilidade: Disponivel");
+            }else{
+                System.out.println("| Disponibilidade: Indisponivel");
+            }
+            System.out.println("-------------------------------------");
+        }
     }
 
 }
