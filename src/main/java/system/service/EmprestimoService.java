@@ -1,6 +1,7 @@
 package system.service;
 
 import system.domain.Emprestimos;
+import system.dto.EmprestimoDTO;
 import system.infrastructure.Connect;
 import system.infrastructure.repository.EmprestimoRepository;
 import system.infrastructure.repository.LivroRepository;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmprestimoService {
@@ -63,7 +65,24 @@ public class EmprestimoService {
         }
     }
 
+    public void consultarEmprestimos() throws SQLException {
 
+        var emprestimoRepository = new EmprestimoRepository();
+        List<EmprestimoDTO> emp =  emprestimoRepository.buscarEmprestimos();
+
+        for (EmprestimoDTO emprestimo : emp){
+            System.out.println("| id Emprestimo: "+emprestimo.idEmprestimo());
+            System.out.println("| Livro Emprestado: "+emprestimo.titulo());
+            System.out.println("| Data do Emprestimo: "+emprestimo.dataEmprestimo());
+            if(emprestimo.dataDevolucao() == null){
+                System.out.println("!Livro em Emprestimo!");
+
+            }else {
+                System.out.println("| Livro Devolvido em: "+emprestimo.dataDevolucao());
+            }
+            System.out.println("-------------------------------------");
+        }
+    }
 }
 
 

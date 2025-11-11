@@ -2,6 +2,7 @@ package system.infrastructure.repository;
 
 import system.domain.Emprestimos;
 import system.domain.Livros;
+import system.dto.EmprestimoDTO;
 import system.infrastructure.Connect;
 
 import java.sql.Connection;
@@ -61,18 +62,15 @@ public class EmprestimoRepository {
         return 0;
     }
 
-    public List<Emprestimos> buscarEmprestimos() throws SQLException {
+    public List<EmprestimoDTO> buscarEmprestimos() throws SQLException {
 
-        List<Emprestimos> emp = new ArrayList<>();
+        List<EmprestimoDTO> emp = new ArrayList<>();
 
         String query = """
-                SELECT 
-                id,
-                titulo,
-                autor,
-                ano,
-                disponivel
-                FROM livros
+                SELECT emp.id , l.titulo, emp.data_emprestimo, emp.data_devolucao
+                FROM emprestimos emp 
+                JOIN livros l
+                ON emp.livro_id = l.id
                 """;
 
         try(Connection conn = Connect.conectar();
@@ -80,18 +78,17 @@ public class EmprestimoRepository {
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
-                int id =  rs.getInt("id");
+                int id = rs.getInt("id");
                 String titulo = rs.getString("titulo");
-                String autor = rs.getString("autor");
-                int ano = rs.getInt("ano");
-                boolean disponivel = rs.getBoolean("disponivel");
+                LocalDate dataEmprestimo = rs.getObject("data_emprestimo", LocalDate.class);
+                LocalDate dataDevolucao = rs.getObject("data_devolucao", LocalDate.class);
 
-                var book = new Livros(id, titulo, autor, ano, disponivel);
-                livros.add(book);
+                var emprestimos = new EmprestimoDTO(id, titulo, dataEmprestimo, dataDevolucao);
+                emp.add(emprestimos);
             }
         }
 
-        return livros;
+        return emp;
     }
 
 }

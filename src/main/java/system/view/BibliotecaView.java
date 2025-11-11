@@ -61,7 +61,10 @@ public class BibliotecaView {
                 var emprestimo = new EmprestimoService();
                 emprestimo.RegistarDevolucao();
             }
-            case 5 ->{}
+            case 5 ->{
+                var emprestimo = new EmprestimoService();
+                emprestimo.consultarEmprestimos();
+            }
             case 0 ->{
                 System.out.println("\nObrigado por usar o Bibliotech!");
             }
